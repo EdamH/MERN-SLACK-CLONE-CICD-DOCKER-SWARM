@@ -357,7 +357,7 @@ We chose to use Microsoft Azure for our project. In order to create a virtual ma
 - **6-** If you chose to access your machine through SSH, a key should have been downloaded to your machine (DO NOT LOSE IT).
 - **7-** SSH into your remote server and pull the repository you have created. The command should look something like this `ssh -i remote-machine_key.pem azureuser@public_ip_address`
 
-The image below showcases the machine that we opted to use for this solution:
+The image below showcases the machine that we opted to use for this application:
 
  ![Azure Server](./img/azure-machine.jpg) 
 
