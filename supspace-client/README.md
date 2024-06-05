@@ -118,3 +118,9 @@ Slack clone is a powerful team collaboration platform that allows you to communi
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Collaborators
+<a href="https://https://github.com/EdamH/MERN-SLACK-CLONE-CICD-DOCKER-SWARM/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=EdamH/MERN-SLACK-CLONE-CICD-DOCKER-SWARM" />
+  
+</a>
