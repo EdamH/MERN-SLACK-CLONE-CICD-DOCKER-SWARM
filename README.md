@@ -2,8 +2,10 @@
 
 ## CONSIDERATION:
 
-The original application was stored in gitlab. It was only moved to this github repository for reach and visibility reasons. Therefore, it is highly recommended that you clone it from the original repository if you wish to try this project!
-GITLAB REPOSITORY: [CLICK THIS LINK](https://gitlab.com/supspace/supspace-collaboration-platform)
+-The original application was stored in gitlab. It was only moved to this github repository for reach and visibility reasons. Therefore, it is highly recommended that you clone it from the original repository if you wish to try this project!
+
+-GITLAB REPOSITORY: 
+- [CLICK THIS LINK](https://gitlab.com/supspace/supspace-collaboration-platform)
 
 ## Continuous Integration & Continuous Delivery Pipeline and Monitoring for a MERN application Orchestrated by Docker Swarm
 
