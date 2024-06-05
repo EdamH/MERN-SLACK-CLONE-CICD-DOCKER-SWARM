@@ -39,8 +39,8 @@ services:
       SMTP_USERNAME: supchat24@outlook.com
       SMTP_PASSWORD: cin11149398
       NODE_ENV: development
-      GOOGLE_CLIENT_ID: 319168896136-u7trpcna9m3sas7snc93d2dac9hjpopr.apps.googleusercontent.com
-      GOOGLE_CLIENT_SECRET: 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
+      GOOGLE_CLIENT_ID: smth.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: SMTH-SMTH
       CLIENT_URL: http://supspace-client:3000
       API_URL: http://localhost:8080/api/v1
     command: node dist/index.js

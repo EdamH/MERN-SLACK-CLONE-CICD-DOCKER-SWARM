@@ -1,25 +1,6 @@
 version: "3.1"
 services:
 
-  # jenkins-server:
-  #   container_name: jenkins-server
-  #   image: jenkins/jenkins:lts
-  #   ports:
-  #     - "8100:8080"
-  #     - "50000:50000"
-  #   volumes:
-  #     - ./jenkins_home:/var/jenkins_home
-  #   networks:
-  #     - supspace-network
-  #   # environment:
-  #   #   - JENKINS_OPTS="--prefix=/jenkins"
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-file: "5"
-  #       max-size: "10m"
-    
-
   supspace-client:
     build:
       context: ../supspace-client
@@ -60,8 +41,8 @@ services:
       SMTP_USERNAME: supchat24@outlook.com
       SMTP_PASSWORD: cin11149398
       NODE_ENV: development
-      GOOGLE_CLIENT_ID: 319168896136-u7trpcna9m3sas7snc93d2dac9hjpopr.apps.googleusercontent.com
-      GOOGLE_CLIENT_SECRET: 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
+      GOOGLE_CLIENT_ID: smth.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: SMTH-SMTH
       CLIENT_URL: http://supspace-client:3000
       API_URL: http://localhost:8080/api/v1
       STAGING_URL: http://localhost:3000
