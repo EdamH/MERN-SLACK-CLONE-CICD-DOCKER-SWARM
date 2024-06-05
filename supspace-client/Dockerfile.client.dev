@@ -1,0 +1,26 @@
+FROM node:18-alpine
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+RUN chown node:node /home/node/app/package-lock.json
+
+USER node
+
+RUN npm install --legacy-peer-deps
+
+COPY --chown=node:node . .
+
+RUN npm run build
+
+# # Exposed port (for orchestrators and dynamic reverse proxies)
+EXPOSE 3000
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "wget", "-q0", "http://localhost:3000/health" ]
+
+
+CMD ["npm", "start"]

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;600&display=swap');
+
+html,
+body {
+  font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100vh;
+  width: 100vw;
+}
+.page-skeleton::after {
+  background: #171717;
+}
+.page-skeleton::before {
+  background: #363636;
+}
+html {
+  font-size: 62.5%;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.chat-wrapper {
+  color: #b6b6b6;
+  font-size: 1.4rem;
+}
+
+.chat-wrapper a {
+  color: #339af0;
+  text-decoration: underline;
+}
+
+.toolbarClassName {
+  background: #27282c !important;
+  border: none !important;
+  margin: 0 !important;
+  padding-top: 1rem !important;
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.rdw-option-wrapper img {
+  filter: invert(100%) sepia(2%) saturate(1333%) hue-rotate(202deg)
+    brightness(75%) contrast(87%);
+}
+
+.rdw-option-wrapper {
+  background: #27282c !important;
+  border: none !important;
+}
+
+.editorClassName {
+  border-bottom-left-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+  color: white !important;
+  padding: 1rem 1.5rem !important;
+  background-color: #27282c !important;
+  min-height: 8rem !important;
+  font-size: 1.5rem !important;
+  font-family: inherit !important;
+}
+.editorClassName a {
+  color: #339af0 !important;
+  text-decoration: underline !important;
+}
+.public-DraftStyleDefault-ltr {
+  margin: 0 !important;
+}
+
+.inline-style {
+  border-right: 1px solid #404146 !important;
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.rdw-emoji-modal,
+.rdw-link-modal,
+.rdw-image-modal {
+  background-color: #27282c !important;
+  border: 1px solid #404146 !important;
+  bottom: 2.5rem !important;
+  top: unset !important;
+  box-shadow: unset !important;
+  /* height: 27rem !important; */
+  border-radius: 1rem !important;
+}
+.rdw-link-modal {
+  font-size: 1.2rem !important;
+  height: unset !important;
+}
+
+.rdw-link-modal-label {
+  font-size: 1.2rem !important;
+}
+.rdw-link-modal-input {
+  border: unset !important;
+}
+.rdw-link-modal-btn {
+  background-color: #27282c !important;
+  border: 1px solid #404146 !important;
+}
+
+.rdw-suggestion-dropdown {
+  background-color: #27282c !important;
+  bottom: 22px !important;
+  left: -5px !important;
+  border: unset !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 1px 2px 15px #1c1d20 !important;
+  min-width: 40rem !important;
+  padding-block: 0.75rem !important;
+}
+
+.rdw-suggestion-option {
+  border: unset !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.5rem !important;
+  /* font-weight: 600; */
+}
+
+.rdw-suggestion-option:hover,
+.rdw-suggestion-option-active {
+  background-color: rgb(23, 82, 127) !important;
+  cursor: pointer !important;
+}
+
+.rdw-editor-main {
+  overflow: unset !important;
+}
+
+.rdw-mention-link,
+.entity-mention {
+  background-color: rgba(171, 107, 34, 0.4) !important;
+}
+
+.editorClassName a,
+.entity-mention {
+  color: rgb(249, 212, 100) !important;
+}
+
+.rdw-image-modal-header-option {
+  border: unset !important;
+  font-size: 1.4rem !important;
+}
+.rdw-image-modal-header-label {
+  border: unset !important;
+}
+.rdw-image-modal-header-label-highlighted {
+  border-bottom: 2px solid #0a66b7 !important;
+}
+.rdw-image-modal-alt-input,
+.rdw-image-modal-size-input,
+.rdw-image-modal-url-input {
+  border: unset !important;
+}
+
+.rdw-image-modal-size {
+  display: none !important;
+}
+
+.rdw-image-modal-upload-option {
+  background-color: #404146 !important;
+  border-radius: 1rem !important;
+  outline: unset !important;
+}
+
+.rdw-image-modal-upload-option-label {
+  font-size: 1.3rem !important;
+  text-align: center !important;
+}
+
+.rdw-image-modal-btn {
+  border: unset !important;
+  border-radius: 0.5rem !important;
+  background: #0a66b7 !important;
+}
+
+.rdw-image-modal-btn:disabled {
+  background: #404146 !important;
+}
+
+.rdw-image-imagewrapper img {
+  border-radius: 1rem !important;
+  height: 14rem !important;
+}
+
+.entity-image {
+  margin-block: 2rem !important;
+  height: 35rem !important;
+}
+
+.rdw-image-alignment-options-popup {
+  background-color: #404146 !important;
+  border: unset !important;
+  width: unset !important;
+  display: none !important;
+}
+
+.rdw-image-alignment {
+  display: flex !important;
+  justify-content: flex-start !important;
+}

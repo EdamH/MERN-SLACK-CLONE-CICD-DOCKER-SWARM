@@ -1,0 +1,120 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_CREDS = credentials('docker-hub-creds')
+    }
+
+    stages {
+        stage('Build and run dev') {
+            steps {
+                echo "Branch: ${GIT_BRANCH}    Commit: ${GIT_COMMIT}"
+                echo "Jenkins node: ${NODE_NAME}    Build tag: ${BUILD_TAG}"
+                echo "Jenkins workspace: ${WORKSPACE}"
+                dir("./env-dev") {
+                    // Build and start dev
+                    sh 'docker-compose -f docker-compose.dev.yml up -d --build'
+                }
+            }
+        }
+        stage('Unit tests') {
+            steps {
+                // run Jest tests
+                sh 'docker exec supspace-client npm test'
+            }
+            post { // clean-up dev
+                always {
+                    dir("./env-dev") {
+                        sh 'docker-compose -f docker-compose.dev.yml down'
+                        sh 'docker rmi supspace-client'
+                        sh 'docker rmi supspace-api'
+                    }
+                }
+            }
+        }
+        stage('Build and run staging') {
+            steps {
+                dir("./env-dev") {
+                    sh 'docker-compose -f docker-compose.staging.yml up -d --build'
+                    // sh 'sleep 120' // wait for DB to be ready (to be replaced with container status check)
+                }
+            }
+        }
+        stage('Integration tests') {
+            steps {
+                // Set script permissions inside the Docker container
+                sh 'chmod +x ./ops/tests/integration.sh'
+                // Tests if app client reaches the backend and gets data from the database
+                sh './ops/tests/integration.sh'
+            }
+            post {
+                always {
+                    // Stop staging environment 
+                    dir("./env-dev") {
+                        sh 'docker-compose -f docker-compose.staging.yml down'
+                    }
+                }
+                failure {
+                    // // If tests fail, remove failed staging images
+                    sh 'docker rmi supspace-client'
+                    sh 'docker rmi supspace-api'
+                }
+            }
+        }
+        stage('Push images to Registry') {
+            steps {
+                // tag images
+                sh "docker image tag supspace-client edamh158/supspace-client:${GIT_COMMIT}"
+                sh "docker image tag supspace-api edamh158/supspace-api:${GIT_COMMIT}"
+                sh "docker image tag nginx:alpine edamh158/supspace-nginx:${GIT_COMMIT}"
+                // Login to Docker Hub
+                sh "echo \$DOCKER_CREDS_PSW | docker login -u \$DOCKER_CREDS_USR --password-stdin"
+                // push images
+                sh "docker push edamh158/supspace-client:${GIT_COMMIT}"
+                sh "docker push edamh158/supspace-api:${GIT_COMMIT}"
+                sh "docker push edamh158/supspace-nginx:${GIT_COMMIT}"
+            }
+            post {
+                always {
+                    // remove local images
+                    sh "docker rmi edamh158/supspace-client:${GIT_COMMIT}"
+                    sh "docker rmi edamh158/supspace-api:${GIT_COMMIT}"
+                    sh "docker rmi edamh158/supspace-nginx:${GIT_COMMIT}"
+                    sh "docker rmi supspace-client"
+                    sh "docker rmi supspace-api"
+                    sh "docker rmi mongo:4.4.17-focal"
+                    sh "docker rmi nginx:alpine"
+                }
+            }
+        }
+        stage('Deploy to prod') {
+            when {
+                branch 'main'
+            }
+            steps {
+                dir("./env-dev") {
+                    sh "echo \$DOCKER_CREDS_PSW | docker login -u \$DOCKER_CREDS_USR --password-stdin"
+                     // Rolling update to production (waits for update to finish)
+                    sh 'docker service update --image edamh158/supspace-client:${GIT_COMMIT} prod_supspace-client'
+                    sh 'docker service update --image edamh158/supspace-api:${GIT_COMMIT} prod_supspace-api'
+                    sh 'docker service update --image edamh158/supspace-nginx:${GIT_COMMIT} prod_nginx'
+                }
+            }
+        }
+        stage('Smoke tests and roll-back if needed') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh "curl 'http://prod_nginx:80'"
+            }
+            post {
+                failure {
+                    sh "docker service rollback prod_supspace-client"
+                    sh "docker service rollback prod_supspace-api"
+                    sh "docker service rollback prod_nginx"
+                }
+            }
+        }
+    }
+}
