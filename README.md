@@ -45,7 +45,7 @@ The application placeholder was bootstrapped with [Create Next App](https://gith
 
 #### Brief Description
 
-Our solution combines different features from known collaboration platforms, notably **Microsoft Teams**, **Slack** & **Discord** in a web-based platform that is tailored to the specific need of our community at SUP'COM. There are a more in-depth description of the application and the way its features work in the [supspace-client-ReadmeFile](https://github.com/EdamH/MERN-SLACK-CLONE-CICD-DOCKER-SWARM/tree/main/supspace-client#readme)
+Our solution combines different features from known collaboration platforms, notably **Microsoft Teams**, **Slack** & **Discord** in a web-based platform that is tailored to the specific need of our community at SUP'COM. There is a more in-depth description of the application and the way its features work in the [supspace-client-ReadmeFile](https://github.com/EdamH/MERN-SLACK-CLONE-CICD-DOCKER-SWARM/tree/main/supspace-client#readme)
 
 ![Brief look at the application](./img/workspace-if.png)
 
